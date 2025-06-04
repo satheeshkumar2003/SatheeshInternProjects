@@ -1,10 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Create a list for tasks
 tasks = []
 
-# Function to add a new task
 def add_task():
     description = description_entry.get()
     due_date = due_date_entry.get()
@@ -19,7 +17,6 @@ def add_task():
     update_task_list()
     clear_entries()
 
-# Function to display the list of tasks
 def update_task_list():
     task_listbox.delete(0, tk.END)
     sorted_tasks = sorted(tasks, key=lambda x: x['priority'])
@@ -27,7 +24,6 @@ def update_task_list():
         status = "Completed" if task['completed'] else "Incomplete"
         task_listbox.insert(tk.END, f"{task['description']} | Due Date: {task['due_date']} | Priority: {task['priority']} | Status: {status}")
 
-# Function to remove a task
 def remove_task():
     if not task_listbox.curselection():
         return
@@ -35,7 +31,6 @@ def remove_task():
     tasks.pop(selected_task_index)
     update_task_list()
 
-# Function to clear input entries
 def clear_entries():
     description_entry.delete(0, tk.END)
     due_date_entry.delete(0, tk.END)
@@ -86,7 +81,6 @@ scrollbar = tk.Scrollbar(app, orient=tk.VERTICAL, command=task_listbox.yview)
 scrollbar.grid(row=3, column=1, pady=10)
 task_listbox.config(yscrollcommand=scrollbar.set)
 
-# Initial task list update
 update_task_list()
 
 # Start the GUI application
